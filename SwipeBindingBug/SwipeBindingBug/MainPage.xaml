@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwipeBindingBug.MainPage">
+
+    <StackLayout>
+        <CollectionView VerticalOptions="FillAndExpand" ItemsSource="{Binding Items}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="1" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView IsEnabled="{Binding IsSwipeViewEnabled}">
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItemView FlowDirection="MatchParent" >
+                                    <Grid>
+                                        <Button BackgroundColor="Pink" Grid.Column="0" Text="DEL" FontAttributes="Bold"/>
+                                    </Grid>
+                                </SwipeItemView>
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <StackLayout>
+                            <Label Text="{Binding}" Grid.Row="0"  FontSize="Large" Margin="15,5,15,5" />
+                            <BoxView HeightRequest="1" Color="LightGray"  />
+                        </StackLayout>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="{Binding ButtonLabel}" Command="{Binding SwitchSwipeViewStatus}" />
+    </StackLayout>
+</ContentPage>
